@@ -1,0 +1,83 @@
+$header-size: 80px;
+
+/**=====================
+    05. Header CSS Start
+==========================**/
+%common {
+  color: $white;
+  border-left-color: $white;
+  transition: $sidebar-transition;
+}
+.page-wrapper{
+  .page-main-header{
+    background-color: $main-header-bg-color;
+    height: $header-size;
+    position: $main-header-position;
+    top: $main-header-top;
+    z-index: $main-header-z-index;
+    box-shadow: $main-header-shadow;
+    width: calc(100% - #{$sidebar-width});
+    display: flex;
+    align-items: center;
+    margin-left: $sidebar-width;
+    transition: $sidebar-transition;
+    &.open{
+      margin-left: 0;
+      width: 100%;
+      transition: $sidebar-transition;
+    }
+  }
+  .page-body-wrapper{
+    .page-body{
+      min-height: calc(100vh - #{$header-size});
+      margin-top: $header-size;
+      padding: $page-body-padding;
+      position: relative;
+      background-color: $page-body-bg-color;
+    }
+  }
+}
+
+
+/**======Main Header css Start ======**/
+.page-main-header{
+  max-width: 100vw;
+
+  .main-header-right{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: $main-header-right-padding;
+    margin: 0;
+    svg{
+      line{
+        color: $main-header-right-toggle-color;
+      }
+    }
+    .nav-right{
+      text-align: right;
+      padding-left: $main-header-right-nav-right;
+      >ul{
+        display: flex;
+        align-items: center;
+        > li{
+          position: relative;
+          border-left: 1px solid $light-semi-gray;
+          padding: 0 20px;
+        }
+      }
+    }
+    li{
+      display: inline-block;
+      position: relative;
+
+    }
+  }
+}
+/**======Main Header css Ends ======**/
+
+
+/**=====================
+    05. Header CSS Ends
+==========================**/

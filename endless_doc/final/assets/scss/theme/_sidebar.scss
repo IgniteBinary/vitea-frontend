@@ -1,0 +1,191 @@
+
+/**=====================
+    80. Sidebar CSS Start
+==========================**/
+.page-wrapper{
+  .page-body-wrapper{
+    .sidebar{
+      height: calc(100vh - #{$header-size});
+      overflow: auto;
+      box-shadow: $sidebar-shadow;
+      &.custom-scrollbar {
+        &::-webkit-scrollbar-track {
+          -webkit-box-shadow: inset 0 0 6px $transparent-color;
+        }
+        &::-webkit-scrollbar {
+          width: 6px;
+          transition: .3s;
+        }
+        &::-webkit-scrollbar-thumb {
+          background-color: $transparent-color;
+        }
+      }
+      &:hover {
+        &.custom-scrollbar {
+          &::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.30);
+          }
+        }
+      }
+    }
+    .page-sidebar{
+      width: $sidebar-width;
+      position: $sidebar-position;
+      background: $sidebar-background-color;
+      top: 0;
+      height: calc(100vh);
+      z-index: $sidebar-z-index;
+      transition: $sidebar-transition;
+      .main-header-left{
+        display: inline-flex;
+        width: 100%;
+        height: $header-size;
+        padding: $main-header-padding;
+        align-items: center;
+        background-color: $main-header-left-bg-color;
+        z-index: $main-header-z-index;
+        box-shadow: -3px 1px 3px 1px rgba(68, 102, 242, 0.1);
+        .logo-wrapper{
+          padding-left: 10px;
+          height: 100%;
+          display: flex;
+          align-items: center;
+        }
+      }
+      .sidebar-menu {
+        list-style: $sidebar-menu-list-style;
+        margin: $sidebar-menu-list-margin;
+        padding: $sidebar-menu-padding;
+        .sidebar-header{
+          font-size: $sidebar-font-size;
+          letter-spacing: $sidebar-letter-specing;
+          padding-bottom: $sidebar-padding-bottom;
+          padding-top: $sidebar-padding-top;
+          text-transform: $sidebar-txt-transform;
+          font-weight: $sidebar-font-weight;
+          color: $sidebar-font-color;
+          font-family: $sidebar-font-family;
+          svg{
+            width: $sidebar-icon-size;
+            height: $sidebar-icon-size;
+            margin-right: $sidebar-icon-margin;
+            stroke-width: $sidebar-icon-stroke-width;
+            vertical-align: sub;
+          }
+        }
+        >
+        li {
+          > a {
+            display: block;
+            transition: $sidebar-transition;
+            position: relative;
+            &:before {
+              position: absolute;
+              bottom: 0;
+              content: "";
+              height: 2px;
+              width: 0;
+              background-color:$document-default;
+              transition: 0.5s ease;
+            }
+            &.active{
+              color: $document-default;
+              transition: $sidebar-transition;
+              text-shadow: 0px 0px 0px $white;
+            }
+            &:hover{
+              color: $document-default;
+              padding-left: $sidebar-heading-hover-padding;
+              transition: $sidebar-transition;
+              &:before {
+                width: 80px;
+                height: 2px;
+                transition: 0.5s ease;
+              }
+            }
+            i{
+              margin-right: 7px;
+              text-align: right;
+              margin-top: 7px;
+              font-size: $sidebar-arrow-size;
+              &:before{
+                content: $sidebar-close-icon;
+              }
+              & ~i{
+                margin-right: 0;
+              }
+            }
+          }
+          .label {
+            margin-top: 3px;
+            margin-right: 5px;
+          }
+          .badge {
+            margin-left: 57px;
+            text-transform: capitalize;
+            vertical-align: text-top;
+          }
+          &:hover > a {
+            @extend %common;
+          }
+          &.active > a {
+            @extend %common;
+          }
+        }
+        li {
+          &.sidebar-header {
+            margin-bottom: $sidebar-sub-header-margin;
+            padding: $sidebar-sub-header-padding;
+            color: $sidebar-font-color;
+            font-weight: $sidebar-font-weight;
+            transition: $sidebar-transition;
+          }
+          &.active {
+            > .sidebar-submenu {
+              display: block;
+              transform: rotateX(0deg);
+              transform-origin: 10% 10%;
+              -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+              transition: opacity 0.3s, -webkit-transform 0.3s;
+              transition: transform 0.3s, opacity 0.3s;
+              transition: transform 0.3s, opacity 0.3s, -webkit-transform 0.3s;
+              -webkit-transform-style: preserve-3d;
+              transform-style: preserve-3d;
+            }
+          }
+        }
+        .sidebar-submenu {
+          display: none;
+          list-style: none;
+          margin-left: 0;
+        }
+        a {
+          text-decoration: none;
+        }
+      }
+      ~ .page-body {
+        margin-left: $sidebar-width;
+        transition: $sidebar-transition;
+      }
+
+      &.open{
+        display: block;
+        margin-left: calc(-#{$sidebar-width + 5px});
+        ~ .page-body {
+          margin-left: 0;
+          transition: $sidebar-transition;
+        }
+        ~ footer {
+          margin-left: 0;
+          padding-right: 15px;
+        }
+        ~ .footer-fix {
+          width: calc(100% - 0px);
+        }
+      }
+    }
+  }
+}
+/**=====================
+    80. Sidebar CSS Ends
+==========================**/

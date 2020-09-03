@@ -1,0 +1,66 @@
+
+
+/**=====================
+    03.  Card CSS Start
+==========================**/
+//Card css
+.card{
+  margin-bottom: $card-margin-bottom;
+  border: $card-border-width;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+  border-radius: $card-border-radious;
+  box-shadow: $card-box-shadow;
+  .card-header{
+    background-color:  $card-header-bg-color;
+    border-bottom: none;
+    padding: $card-padding;
+    border-bottom: 1px solid $card-border-color;
+    border-top-left-radius: $card-border-radious;
+    border-top-right-radius: $card-border-radious;
+    h5{
+      font-size:$card-header-font-size;
+      margin-bottom: 0;
+      text-transform: $card-header-font-transform;
+      font-weight: $card-header-font-weight;
+    }
+    > span{
+      font-size: $card-header-span-size;
+      color: $card-header-span-color;
+      margin-top: 5px;
+      display: block;
+      letter-spacing: 1px;
+    }
+  }
+  .card-body{
+    padding: $card-padding;
+    background-color: $card-body-bg-color;
+    pre {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    p{
+      &:last-child{
+        margin-bottom: 0;
+      }
+    }
+  }
+  .sub-title{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 5px;
+    margin-bottom: 8px;
+    font-size: 18px;
+  }
+  .card-footer{
+    background-color: $card-footer-bg-color;
+    border-top: 1px solid $card-border-color;
+    padding: $card-padding;
+    border-bottom-left-radius: $card-border-radious;
+    border-bottom-right-radius: $card-border-radious;
+  }
+}
+
+/**=====================
+    03. Card CSS End
+==========================**/

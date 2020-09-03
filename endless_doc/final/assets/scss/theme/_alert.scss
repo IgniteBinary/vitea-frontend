@@ -1,0 +1,70 @@
+/**=====================
+     15. Alert CSS start
+==========================**/
+.alert{
+    border-radius: $alert-border-radious;
+    padding: 15px;
+    [data-notify = 'message']{
+      display: block;
+    }
+  }
+  
+  
+  .card-body{
+    .alert{
+      &:last-child{
+        margin-bottom: 0;
+      }
+    }
+  }
+  
+  $alert-name:primary,
+  secondary,
+  success,
+  danger,
+  warning,
+  info,
+  light,
+  dark;
+  
+  $alert-color :$primary-color,
+  $secondary-color,
+  $success-color,
+  $danger-color,
+  $warning-color,
+  $info-color,
+  $light-color,
+  $dark-color;
+  
+  @each $var in $alert-name {
+    $i: index($alert-name, $var);
+    .alert-#{$var}{
+      background-color: rgba(nth($alert-color, $i), 0.8);
+      border-color: rgba(nth($alert-color, $i), 0.9);
+      color: $white;
+      .progress {
+        height: 5px;
+        background-color: darken(nth($alert-color, $i), 1%);
+        border-radius: 0;
+      }
+      .progress-bar{
+        background-color: lighten(nth($alert-color, $i), 50%);
+      }
+      .alert-link{
+        color: nth($alert-color, $i);
+        @if($var == "light"){
+          color: $dark-color;
+        }
+      }
+      @if($var == "light"){
+        color: $dark-color;
+        background-color: $light-color;
+      }
+      hr{
+        border-top-color: nth($alert-color, $i);
+      }
+    }
+  }
+  /**=====================
+       15. Alert CSS end
+  ==========================**/

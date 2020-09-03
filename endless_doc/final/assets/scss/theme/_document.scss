@@ -1,0 +1,316 @@
+/**=====================
+     72.  Document CSS Start
+==========================**/
+.navbar-toggler {
+  span {
+    width: auto;
+    height: auto;
+    svg {
+      vertical-align: middle;
+    }
+  }
+}
+.switch-sm {
+  .switch {
+    width: 25px;
+    height: 16px;
+    margin-top: 10px;
+    margin-bottom: 0px
+  }
+}
+.cardTitle {
+  margin: 0 0 25px !important;
+  color: #2f3c4e;
+  display: inline-block;
+  font-size: 24px;
+  font-weight: 600;
+  width: 100%;
+}
+.card-sub-subTitle {
+  margin: 0 0 15px !important;
+  font-size: 16px;
+  font-weight: 600;
+  color: $document-default;
+}
+.document {
+  &.page-wrapper {
+    .page-main-header{
+      height: 80px;
+      .main-header-right {
+        padding: 0 0;
+      }
+      .mobile-sidebar{
+        .media-body{
+          .switch{
+            a{
+              svg{
+                line{
+                  color: $theme-body-font-color;
+                }
+              }
+            }
+          }
+        }
+      }
+      .navbar-collapse{
+        width: 100%;
+        justify-content: flex-end;
+        .navbar-nav{
+          display: flex;
+          justify-content: flex-end;
+          padding-right: 0;
+          .nav-item{
+            padding-right: 15px;
+            &:last-child {
+              padding-right: 0;
+            }
+          }
+        }
+      }
+      svg {
+        line {
+          color: $theme-body-font-color;
+        }
+      }
+      .document-right-nav {
+        .navbar {
+          .navbar-collapse {
+            .navbar-nav {
+              .nav-item {
+                .nav-link {
+                  color: $black;
+                  letter-spacing: 1px;
+                  text-transform: uppercase;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .page-body-wrapper {
+      .page-body {
+        padding-top: 30px !important;
+        margin-top: 80px;
+      }
+    }
+  }
+  .page-sidebar{
+    h4{
+      text-transform: uppercase;
+      font-size: 15px;
+      letter-spacing: 1.5px;
+      font-weight: 500;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #3c4c61;
+    }
+  }
+}
+.document-content {
+  .page-sidebar {
+    .nav-pills {
+      li {
+        color: $dark-all-font-color;
+      }
+    }
+  }
+  .logo-wrapper {
+    margin-bottom: 30px;
+    padding: 20px;
+    border-bottom: 1px solid #3c4c61;
+  }
+  ul.nav-pills {
+    overflow-y: scroll;
+    max-height: calc(100vh - 130px);
+    padding-left: 20px;
+    padding-right: 20px;
+    display: block;
+    li {
+      line-height: 1;
+      .nav-link {
+        border-radius: .25rem;
+        font-size: 15px;
+        display: block;
+        text-decoration: none;
+        line-height: 40px;
+        color: $dark-all-font-color;
+        font-weight: 500;
+        letter-spacing: 1px;
+        padding: 0;
+        i {
+          margin-top: 7px;
+          text-decoration: none;
+          line-height: 25px;
+          margin-right: 10px;
+        }
+        &.active {
+          background-color: unset !important;
+          color: $document-default;
+        }
+      }
+      .show > .nav-link {
+        background-color: unset !important;
+        color: $white;
+        text-shadow: 0 0 0 $white;
+      }
+    }
+  }
+  .table {
+    thead {
+      th {
+        width: 50%;
+      }
+    }
+  }
+  .set-flex {
+    display: flex;
+  }
+  i {
+    &.fa-star {
+      color: $btn-search-bg-c;
+    }
+  }
+  .col-9 {
+    padding-left: 40px;
+    .set-height {
+      overflow: scroll;
+      overflow-x: hidden;
+    }
+    .tab-content {
+      overflow: auto;
+      overflow-x: hidden;
+      max-height: calc(100% - 200px);
+      position: fixed;
+      width: 976px;
+      margin-left: 30px;
+      -webkit-box-shadow: 0 0 15px 0 rgba(220, 220, 220, 0.4);
+      -o-box-shadow: 0 0 15px 0 rgba(220, 220, 220, 0.4);
+      box-shadow: 0 0 15px 0 rgba(220, 220, 220, 0.4);
+      .section-head {
+        font-weight: 600;
+        font-size: 32px;
+        margin-bottom: 40px;
+        padding: 0;
+      }
+    }
+  }
+  .card-body.tree-color {
+    padding: 0;
+  }
+  .jstree-default {
+    padding: 30px;
+    background-color: rgba($primary-color, 0.03);
+    overflow: scroll;
+    ul {
+      li {
+        a {
+          span {
+            min-width: 200px;
+              display: inline-table;
+            + span {
+              color: $success-color;
+            }
+          }
+          .width-folder {
+            min-width: 227px;
+          }
+          .sub-folder {
+            min-width: 176px;
+          }
+        }
+      }
+    }
+    .jstree-hovered {
+      background-color: rgba($primary-color, 0.05);
+      border: 1px solid rgba($primary-color, 0.05);
+    }
+    .jstree-clicked {
+      color: white !important;
+      background: transparent !important;
+    }
+    .jstree-icon {
+      color: #d1d1d1 !important;
+    }
+  }
+  hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .progress {
+    margin-bottom: 10px;
+  }
+  ul.list-ticked li {
+    margin-bottom: 10px;
+    padding-left: 1rem;
+  }
+   .reviews{
+    background-color: $white;
+    padding: 30px 0;
+    margin-bottom: 30px;
+    box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.08);
+    h1{
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    h5{
+      text-transform: capitalize;
+    }
+  }
+}
+.feature-list {
+    list-style-type: disc;
+    list-style-position: inside;
+    padding-left: 48px;
+    li {
+      &:nth-child(9) {
+        color: $document-default;
+      }
+      ul {
+        li {
+          svg {
+            width: 16px;
+            vertical-align: middle;
+          }
+          color: $theme-body-font-color;
+        }
+      }
+    }
+}
+.credits-list {
+  list-style-type: disc;
+  list-style-position: inside;
+  padding-left: 48px;
+  li {
+    a {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    svg {
+      width: 16px;
+      vertical-align: bottom;
+      color: $primary-color;
+    }
+  }
+}
+.warning-block {
+  background-color: rgba(255,166,64,0.5);
+  padding: 20px;
+  border-left: 5px solid rgba(255,159,64,3);
+}
+.pre-card-body {
+  margin: 15px 0;
+  padding: 0 30px !important;
+  p {
+    a {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+/**=====================
+     72. Document CSS Ends
+==========================**/

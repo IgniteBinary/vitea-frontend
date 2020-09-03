@@ -1,0 +1,274 @@
+/**=====================
+     62. Responsive CSS Start
+==========================**/
+@media only screen and (max-width: 13666px) {
+  .document.page-wrapper {
+    .page-main-header {
+      .navbar-collapse {
+        .navbar-nav {
+          .nav-item {
+            padding-right: 9px;
+            .nav-link {
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+/* ========= responsive scss for 1200 screen ========= */
+@media only screen and (max-width: 1199px) {
+  .card{
+    .card-body{
+      padding: 25px;
+    }
+  }
+}
+/* ========= responsive scss for 992 screen ========= */
+@media only screen and (max-width: 991px) {
+  .document-content {
+    .jstree-default {
+      padding: 20px;
+    }
+    ul {
+      &.nav-pills {
+        max-height: calc(100vh - 77px);
+      }
+    }
+  }
+  .feature-list, .credits-list {
+    padding-left: 30px;
+ }
+  .card .card-header h5 {
+    font-size: 17px;
+  }
+  .page-wrapper {
+    .page-main-header{
+      height: 60px;
+      margin-left: 0;
+      width: 100%;
+      .main-header-left {
+        .logo-wrapper{
+          img {
+            height: 35px;
+            margin-top: 0;
+            margin-right: 15px;
+          }
+        }
+      }
+      .main-header-right{
+        .nav-right{
+          position: unset;
+          padding: 0;
+        }
+      }
+    }
+    .page-body-wrapper {
+      .sidebar {
+        height: calc(100vh - 60px);
+      }
+      .page-sidebar {
+        top: 80px;
+        height: calc(100vh - 80px);
+        ~ .page-body{
+          margin-left:0px;
+        }
+      }
+      .page-body{
+        margin-top: 60px;
+        padding: 0 10px;
+      }
+      .card{
+        .card-header,.card-body,.card-footer{
+          padding: 20px;
+        }
+      }
+      footer {
+        margin-left: 0;
+      }
+    }
+  }
+  .document-content {
+    .logo-wrapper {
+      display: none;
+    }
+  }
+  h1{
+    font-size: 34px;
+  }
+  h2{
+    font-size: 28px;
+  }
+  h3{
+    font-size: 26px;
+  }
+  h4{
+    font-size: 22px;
+  }
+  h5{
+    font-size: 18px;
+  }
+  h6{
+    font-size: 15px;
+  }
+  footer {
+    bottom: -20px;
+  }
+}
+/* ========= responsive scss for 768 screen ========= */
+@media only screen and (max-width: 767px) {
+  .navbar-toggler {
+    position: absolute;
+    right: 0;
+  }
+  .document {
+    .page-main-header {
+      .document-right-nav {
+        .navbar {
+          .navbar-collapse {
+            .navbar-nav {
+              .nav-item {
+                .nav-link {
+                  color: $primary-color !important;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .navbar-collapse {
+      position: absolute;
+      width: 100%;
+      background-color: $white;
+      top: 60px;
+      padding: 15px;
+      left: 0;
+      right: 0;
+    }
+  }
+  .footer-copyright{
+    ~div{
+      text-align: center;
+      p{
+        float: none;
+        margin-top: 5px;
+      }
+    }
+  }
+
+  //footer
+  .footer-links{
+    text-align:center;
+  }
+  .footer-copyright{
+    text-align:center !important;
+  }
+  .sm-left-text{
+    text-align: left!important;
+  }
+}
+/* ========= responsive scss for 575 screen ========= */
+@media only screen and (max-width: 575px) {
+  .document-content{
+    .jstree-default {
+      padding: 15px;
+    }
+  }
+  .feature-list, .credits-list {
+    padding-left: 15px;
+    ul {
+      &.ml-5 {
+         margin-left: 20px !important;
+      }
+    }
+ }
+  .page-wrapper {
+    .page-body-wrapper {
+      .card {
+        margin-bottom: 15px;
+        .card-header, .card-body, .card-footer {
+          padding: 15px;
+          .tab-content {
+            .m-t-30 {
+              margin-top: 15px !important;
+            }
+            .m-b-30 {
+              margin-bottom: 15px !important;
+            }
+          }
+        }
+      }
+      .page-body {
+        padding: 0 !important;
+      }
+    }
+  }
+  .page-wrapper {
+    &.document {
+      .landing-main {
+        .navbar-expand-lg {
+          .navbar-brand {
+            width: 150px;
+            img {
+              width: unset;
+            }
+          }
+        }
+      }
+      .page-body-wrapper {
+        &.document-content {
+          .page-sidebar {
+            top: 80px;
+          }
+        }
+      }
+    }
+  }
+  .page-main-header{
+    .main-header-right{
+      padding: 0 15px;
+    }
+  }
+}
+/* ========= responsive scss for 480 screen ========= */
+@media only screen and (max-width: 480px) {
+  .card {
+    .card-header {
+      > span {
+        & + span {
+          display: none;
+        }
+      }
+    }
+  }
+  .badge {
+    padding: 0.42em 0.7em;
+  }
+}
+/* ========= responsive scss for 360 screen ========= */
+@media only screen and (max-width: 360px) {
+  // footer
+  .footer{
+    padding-left: 0;
+    padding-right: 0 !important;
+    p{
+      font-size: 12px;
+    }
+  }
+  .page-wrapper {
+    .page-main-header {
+      .main-header-left {
+        .logo-wrapper{
+          img {
+            margin-top: 5px;
+          }
+        }
+      }
+    }
+  }
+}
+/**=====================
+     62. Responsive CSS Ends
+==========================**/
