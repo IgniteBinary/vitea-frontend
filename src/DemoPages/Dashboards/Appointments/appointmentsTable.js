@@ -1,4 +1,5 @@
 import ReactTable from 'react-table';
+import * as moment from 'moment';
 import {
   Row,
   Col,
@@ -63,7 +64,6 @@ class ProductsTable extends Component {
               columns={[
                 {
                   columns: [
-
                     {
                       Header: 'Title',
                       accessor: 'title',
@@ -85,21 +85,28 @@ class ProductsTable extends Component {
                     },
                     {
                       Header: 'Doctor',
-                      accessor: 'price',
+                      accessor: 'doctor_details',
+                      Cell: (row) => `${'Dr'}${' '}${row.value.user_name}`,
                       minWidth: 100,
                     },
                     {
                       Header: 'Patient Name',
-                      accessor: 'price',
-                      minWidth: 100,
+                      accessor: 'patient_details',
+                      Cell: (row) =>
+                        `${row.value.first_name}${' '}${row.value.last_name}`,
+                      minWidth: 150,
                     },
                     {
-                      Header: 'Time',
-                      accessor: 'quantity',
+                      Header: 'Date/Time',
+                      accessor: 'start_time',
+                      Cell: (row) =>
+                        `${moment(row.value).format('YYYY-MM-DD/ HH:mm')}`,
+                      minWidth: 150,
                     },
                     {
                       Header: 'Status',
-                      accessor: 'weight',
+                      accessor: 'status',
+                      Cell: () => `Pending`
                     },
                   ],
                 },
@@ -119,21 +126,23 @@ class ProductsTable extends Component {
                               <i className='lnr-menu-circle btn-icon-wrapper' />
                             </DropdownToggle>
                             <DropdownMenu className='rm-pointers dropdown-menu-hover-link'>
-                              <DropdownItem header>Manage Product</DropdownItem>
+                              <DropdownItem header>Manage Appointment</DropdownItem>
                               <DropdownItem>
                                 <i className='dropdown-icon pe-7s-look'> </i>
-                                <span onClick={viewProduct(row.value)}>View</span>
+                                <span onClick={viewProduct(row.value)}>
+                                  Assign Doctor
+                                </span>
                               </DropdownItem>
                               <DropdownItem>
                                 <i className='dropdown-icon pe-7s-pen'> </i>
                                 <span onClick={editProduct(row.value)}>
-                                  Edit
+                                  Update Status
                                 </span>
                               </DropdownItem>
                               <DropdownItem>
-                                <i className='dropdown-icon pe-7s-x'> </i>
+                                <i className='dropdown-icon pe-7s-box1'> </i>
                                 <span onClick={deleteProduct(row.value)}>
-                                  Delete
+                                  Archive
                                 </span>
                               </DropdownItem>
                             </DropdownMenu>

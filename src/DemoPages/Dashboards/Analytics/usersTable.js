@@ -31,7 +31,6 @@ class UsersTable extends Component {
   };
 
   filterAll = (e) => {
-    console.log('yes');
     const { value } = e.target;
     const filterAll = value;
     const filtered = [{ id: 'all', value: filterAll }];

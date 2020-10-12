@@ -1,31 +1,23 @@
 import React, { Component, Fragment } from 'react';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import { connect } from 'react-redux';
-import getAllCategories from '../../../actions/categories/getCategories';
-import deleteProduct from '../../../actions/products/deleteProduct';
+import deleteProduct from '../../../actions/appointments/deleteProduct';
 import PageTitle from '../../../Layout/AppMain/PageTitle';
 
 import Tabs, { TabPane } from 'rc-tabs';
 import TabContent from 'rc-tabs/lib/SwipeableTabContent';
 import ScrollableInkTabBar from 'rc-tabs/lib/ScrollableInkTabBar';
 
-import ProductsTable from './productsTable';
-import getALLProducts from '../../../actions/products/getAllProductsAction';
+import AppointmentsTable from './appointmentsTable';
+import getALLAppointments from '../../../actions/appointments/getAllAppointments';
 import { toast, ToastContainer } from 'react-toastify';
 import CheckUser from '../../../helpers/authorization';
 import Tour from 'reactour';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
-class Products extends Component {
+class Appointments extends Component {
   state = {
-    product: {},
-    steps: [
-      {
-        selector: '[data-tut="add_product"]',
-        content: 'To add new products in your store, click on "Add Product"',
-      },
-    ],
-    isTourOpen: false,
+    appointment: {},
     toEditProduct: {},
   };
 
@@ -36,16 +28,7 @@ class Products extends Component {
         window.location.href = '/';
       }, 4000);
     }
-
-    const tut = localStorage.getItem('list_product_tut');
-    if (tut && tut === 'off') {
-      this.closeTour();
-    }
-
-    localStorage.setItem('list_product_tut', 'off');
-
-    this.props.getAllCategories();
-    this.props.getAllProducts();
+    this.props.getALLAppointments();
   }
 
   closeTour = () => {
@@ -111,11 +94,9 @@ class Products extends Component {
           transitionLeave={false}
         >
           <PageTitle
-            
             heading='Appointments'
-            subheading = 'Facility appointment'
+            subheading='Facility appointment'
             icon='pe-7s-note2 icon-gradient bg-ripe-malin'
-           
           />
           {this.state.isTourOpen && (
             <Tour
@@ -136,7 +117,7 @@ class Products extends Component {
             renderTabContent={() => <TabContent />}
           >
             <TabPane tab='All Appointments' key='1'>
-              <ProductsTable
+              <AppointmentsTable
                 data={products}
                 editProduct={this.editProduct}
                 deleteProduct={this.deleteProduct}
@@ -144,7 +125,7 @@ class Products extends Component {
               />
             </TabPane>
             <TabPane tab='Approved Appointments' key='2'>
-              <ProductsTable
+              <AppointmentsTable
                 data={products}
                 editProduct={this.editProduct}
                 deleteProduct={this.deleteProduct}
@@ -152,7 +133,7 @@ class Products extends Component {
               />
             </TabPane>
             <TabPane tab='Completed Appointments' key='3'>
-              <ProductsTable
+              <AppointmentsTable
                 data={products}
                 editProduct={this.editProduct}
                 deleteProduct={this.deleteProduct}
@@ -166,13 +147,12 @@ class Products extends Component {
   }
 }
 export const mapDispatchToProps = (dispatch) => ({
-  getAllCategories: () => dispatch(getAllCategories()),
-  getAllProducts: () => dispatch(getALLProducts()),
-  deleteProduct: (id) => dispatch(deleteProduct(id)),
-});
+         getALLAppointments: () => dispatch(getALLAppointments()),
+         deleteProduct: (id) => dispatch(deleteProduct(id)),
+       });
 
 export const mapStateToProps = (state) => ({
   ...state,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Products);
+export default connect(mapStateToProps, mapDispatchToProps)(Appointments);
