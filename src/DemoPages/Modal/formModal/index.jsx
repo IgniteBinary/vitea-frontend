@@ -10,7 +10,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { connect } from 'react-redux';
 import { 
     Button, Modal, ModalHeader, 
-    ModalBody, ModalFooter, Form, FormGroup, Label } from 'reactstrap';
+    ModalBody, ModalFooter, Form, FormGroup, Label, Input } from 'reactstrap';
 import InputBox from '../../inputbox';
 import DropDown from '../../dropDown';
 import Validations from '../../../helpers/userValidations';
@@ -18,10 +18,11 @@ import createUserAction from '../../../actions/users/createUserAction';
 import getAllStores from '../../../actions/stores/getAllStoresAction';
 import './style.scss';
 import getALLUsers from '../../../actions/users/getAllUsersAction';
+import imageUpload from '../../../actions/apploadImageAction/';
 import Loader from 'react-loaders';
 import DatePicker from 'react-datepicker';
 import PhoneInput from 'react-phone-input-2';
-
+import ImageUpload from './imageDropZone';
 class ModalBackdrop extends React.Component {
     constructor(props) {
         super(props);
@@ -36,7 +37,9 @@ class ModalBackdrop extends React.Component {
               phone_no: '',
               email: '',
               dob: '',
-              user_name: ''
+              user_name: '',
+              image_url: '',
+              speciality: ''
 
             }
         };   
@@ -68,12 +71,37 @@ class ModalBackdrop extends React.Component {
     }
 
 
+    onDropImage = (files) => {
+          const { user } = this.state
+          this.setState({
+            user: {
+              ...user,
+              image_url: files.map((file) =>
+                Object.assign(file, {
+                  preview: URL.createObjectURL(file),
+            })
+              ),
+          }
+          });
+        };
+
+     uploadImageHandler = async () => {
+           const { image_url } = this.state.user
+           console.log(image_url)
+           const imageformData = new FormData();
+           imageformData.append('file', image_url[0]);
+           imageformData.append('upload_preset', 'tqqaksss');
+           await this.props.imageUpload(imageformData)   
+         }
+
+
 
     handleInputChange = (e) => {
         e.preventDefault();
         const data = { type: e.target.name, content: e.target.value };
         const errors = Validations(data, this.state.error);
         const { user } = this.state;
+        console.log(user)
         this.setState({
             user: {
                 ...user,
@@ -93,20 +121,37 @@ class ModalBackdrop extends React.Component {
         });
         return false
       }
-      await createUser(this.state.user)
+
+      const { first_name,last_name, gender, phone_no,email,
+              dob, user_name, speciality} = this.state.user
+
+      const  doctorObj = {
+              first_name,
+              last_name,
+              gender,
+              phone_no,
+              email,
+              dob,
+              user_name,
+              image_url: this.props.Image.img_url, 
+
+      }
+      await this.uploadImageHandler()
+      if(this.props.Image.img_url){
+         await createUser(doctorObj)
+      }
       if (this.props.Users.success) {
          toast.success('User successfully created', {
            position: toast.POSITION.TOP_RIGHT,
          });
         this.props.toggle()
        
-    
+      
       }
     }
     
-      
-
-
+    
+    
     hasError = () => Object.keys(this.state.error).length > 0
 
     render() {
@@ -120,7 +165,7 @@ class ModalBackdrop extends React.Component {
             <Modal isOpen={this.props.modal} toggle={this.toggle} className={this.props.className} backdrop={this.state.backdrop}>
               <ModalHeader toggle={this.toggle} close={closeBtn}> Create Doctor </ModalHeader>
               <ModalBody>
-                <Form onSubmit={this.handleSubmit}>
+                <Form >
                   {this.state.hasErrors && <div>Invalid Inputs</div>}
                   <InputBox
                     classes="create-user-input"
@@ -166,6 +211,25 @@ class ModalBackdrop extends React.Component {
                     onchange={this.handleInputChange}
                     error={error.lastName}
                   />
+
+                  <InputBox
+                    classes="create-user-input"
+                    label="Speciality"
+                    name="speciality"
+                    type="text"
+                    inputValue={this.state.user_name}
+                    required={true}
+                    onchange={this.handleInputChange}
+                    error={error.lastName}
+                  />
+                <FormGroup>
+                <Label for='exampleState'>Profile Image</Label>
+                <ImageUpload
+                  onDrop={this.onDropImage}
+                  files={this.state.user.image_url}
+                />
+                <p style={{ color: 'red' }}>{this.props.errors && this.props.errors.image}</p>
+              </FormGroup>
                 <FormGroup>
                   <Label for="exampleSelect">Date Of birth</Label>
                   <DatePicker
@@ -206,7 +270,7 @@ class ModalBackdrop extends React.Component {
                       Cancel
 
                     </span>
-        <Button className="create-user" type='submit'>{ this.props.Users.isLoading? <Loader type='ball-pulse-sync' color='#fff' /> : 'Create User'}</Button>
+        <Button className="create-user"  onClick={this.handleSubmit} type='submit'>{ this.props.Users.isLoading? <Loader type='ball-pulse-sync' color='#fff' /> : 'Create User'}</Button>
                     {' '}
                   </ModalFooter>
                 </Form>
@@ -219,7 +283,9 @@ class ModalBackdrop extends React.Component {
 }
 export const mapDispatchToProps = (dispatch) => ({
   createUser: (user) => dispatch(createUserAction(user)),
-  getUsers: () => dispatch(getALLUsers)
+  getUsers: () => dispatch(getALLUsers),
+  imageUpload: (image) => dispatch(imageUpload(image)),
+
 })
 export const mapStateToProps = state => ({
   ...state
