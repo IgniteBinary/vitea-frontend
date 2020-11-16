@@ -5,15 +5,15 @@ import { Route } from 'react-router-dom';
 
 import AnalyticsDashboard from './Analytics/';
 import SalesDashboard from './Sales/';
-import CommerceDashboard from './Commerce/';
+import CommerceDashboard from './Appointments/';
 import CRMDashboard from './CRM/';
 //import MinimalDashboard1 from './Minimal/Variation1';
 import Loyalty from './Loyalty/Variation1';
 import Payment from './Payments/Variation1';
-import MinimalDashboard2 from './Minimal/Variation2';
-import AddProduct from './Commerce/addProduct';
-import EditProduct from './Commerce/editProduct';
-import ViewProduct from './Commerce/viewProduct';
+//import MinimalDashboard2 from './Minimal/Variation2';
+// import AddProduct from './Commerce/addProduct';
+// import EditProduct from './Commerce/editProduct';
+// import ViewProduct from './Commerce/viewProduct';
 import EditStore from './CRM/editStore';
 import CreateStore from './CRM/createStore';
 import OflineStore from './CRM/offlineStore';
@@ -60,11 +60,11 @@ const Dashboards = ({ match }) => {
               path={`${match.url}/users`}
               component={AnalyticsDashboard}
             />
-            <Route
+            {/* <Route
               exact
               path={`${match.url}/add-products`}
               component={AddProduct}
-            />
+            /> */}
 
             <Route
               exact
@@ -111,11 +111,11 @@ const Dashboards = ({ match }) => {
             <Route exact path={`${match.url}/loyalty`} component={Loyalty} />
             <Route exact path={`${match.url}/payments`} component={Payment} />
             <Route exact path={`${match.url}`} component={FacilityDashBoard} />
-            <Route
+            {/* <Route
               exact
               path={`${match.url}/minimal-dashboard-2`}
               component={MinimalDashboard2}
-            />
+            /> */}
             <Route
               exact
               path={`${match.url}/logistics`}
@@ -132,16 +132,16 @@ const Dashboards = ({ match }) => {
               component={OrderTracker}
             />
             <Route exact path={`${match.url}/reports`} component={Reports} />
-            <Route
+            {/* <Route
               exact
               path={`${match.url}/edit-products`}
               component={EditProduct}
-            />
-            <Route
+            /> */}
+            {/* <Route
               exact
               path={`${match.url}/view-products`}
               component={ViewProduct}
-            />
+            /> */}
             <Route
               exact
               path={`${match.url}/edit-stores`}

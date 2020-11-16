@@ -11,7 +11,7 @@ const DropDown = ({label, placeholder, options, name, onChange, itemValue}) => {
           <option value="" disabled selected>{placeholder}</option>
           {options.map((value)=> {
               return (
-                <option value={value[itemValue]}>{value.name}</option>
+                <option value={value[itemValue]}>{value[name]}</option>
               )
           })}
         </Input>

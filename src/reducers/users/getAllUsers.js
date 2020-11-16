@@ -86,7 +86,7 @@ const startCreateUser = (state) => {
 
 const usersReducer = (state = initialState , action) => {
     switch (action.type) {
-      case types.API_REQUEST:
+      case 'START_CREATE_USER':
         return startCreateUser(state);
       case types.GET_ALL_USERS_FAILED:
         return updateGetUsersFailedState(state, action);

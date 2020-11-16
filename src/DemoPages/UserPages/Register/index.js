@@ -232,7 +232,7 @@ export class Register extends Component {
            this.setState({ terms: !this.state.terms });
          };
 
-         uploadImageHandler = async () => {
+         uploadImageHandler =  async () => {
            const { image_url, logo_url, certifications } = this.state.facility
            const {imageUpload, logoUpload, certUpload} = this.props
            const imageformData = new FormData();
@@ -248,13 +248,9 @@ export class Register extends Component {
            logoformData.append('file', logo_url[0]);
            logoformData.append('upload_preset', 'tqqaksss');
 
-           let first_image = imageUpload(imageformData)
-           let sec_image = logoUpload(logoformData)
-           let third_image = certUpload(certformData)
-
-           await Promise.all([first_image, sec_image, third_image])
-           
-           
+           await imageUpload(imageformData)
+           await logoUpload(logoformData)
+           await certUpload(certformData)
          }
 
          //Handles input change
@@ -307,25 +303,25 @@ export class Register extends Component {
              return false
            }
 
-           const facilityObject = {
-
-             name,
-             location,
-             tagline,
-             owner,
-             description,
-             phone_no,
-             email,
-             image_url: this.props.Image.img_url,
-             certifications: this.props.Certifications.cert_url,
-             logo_url: this.props.Logo.logo_url
+          
+           this.uploadImageHandler().then(() => {
+             const facilityObject = {
+               name,
+               location,
+               tagline,
+               owner,
+               description,
+               phone_no,
+               email,
+               image_url: this.props.Image.img_url,
+               certifications: this.props.Certifications.cert_url,
+               logo_url: this.props.Logo.logo_url,
+             };
+             this.props.createFacility(facilityObject);
 
            }
-
-           let imageUploader = this.uploadImageHandler()
-           let createFacility = this.props.createFacility(facilityObject)
-
-           await Promise.all([imageUploader, createFacility])
+           ).catch((err)=> console.log(err));
+           //await Promise.all([imageUploader, createFacility])
            // data.append('product_image', JSON.stringify(product_image));
           //  createMerchant(data);
            console.log(this.props.Facility.success);
