@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import { connect } from 'react-redux';
-import deleteProduct from '../../../actions/appointments/deleteProduct';
 import PageTitle from '../../../Layout/AppMain/PageTitle';
 
 import Tabs, { TabPane } from 'rc-tabs';
@@ -10,15 +9,18 @@ import ScrollableInkTabBar from 'rc-tabs/lib/ScrollableInkTabBar';
 
 import AppointmentsTable from './appointmentsTable';
 import getALLAppointments from '../../../actions/appointments/getAllAppointments';
+import editAppointment from '../../../actions/appointments/editAppointment';
 import { toast, ToastContainer } from 'react-toastify';
 import CheckUser from '../../../helpers/authorization';
 import Tour from 'reactour';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
-
+import AsignDoctor from '../../updateUpoitment/updateDoctor';
+import getALLUsers from '../../../actions/users/getAllUsersAction';
 class Appointments extends Component {
   state = {
     appointment: {},
     toEditProduct: {},
+    modal: false,
   };
 
   componentDidMount() {
@@ -29,6 +31,7 @@ class Appointments extends Component {
       }, 4000);
     }
     this.props.getALLAppointments();
+    this.props.getUsers();
   }
 
   closeTour = () => {
@@ -37,6 +40,11 @@ class Appointments extends Component {
 
   openTour = () => {
     this.setState({ isTourOpen: true });
+  };
+
+  toggleModal = (id) => {
+    this.setState({ modal: !this.state.modal })
+    localStorage.setItem('appointment_id', id)
   };
 
   disableBody = (target) => disableBodyScroll(target);
@@ -80,11 +88,42 @@ class Appointments extends Component {
     await this.props.deleteProduct(_id);
   };
 
+  editAppointment = async (id) => {
+    const { editAppointment } = this.props;
+    const { error } = this.state;
+    if (Object.keys(error).length > 0) {
+      toast.error('Invalid Fields', {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      return false;
+    }
+
+    const doctorObj = {
+      ...this.state.doctor,
+      id,
+    };
+
+    await editAppointment(doctorObj);
+
+    if (this.props.Products.success) {
+      toast.success('Doctor  successfully assigned', {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      this.props.toggle();
+    }
+  };
+
   render() {
     const products = this.props.Products.products;
+    const { users } = this.props.Users;
     const accentColor = '#007bff';
     return (
       <Fragment>
+        <AsignDoctor
+          modal={this.state.modal}
+          toggle={this.toggleModal}
+          doctors={users}
+        />
         <CSSTransitionGroup
           component='div'
           transitionName='TabsAnimation'
@@ -118,6 +157,7 @@ class Appointments extends Component {
           >
             <TabPane tab='All Appointments' key='1'>
               <AppointmentsTable
+                assignDoctor={this.toggleModal}
                 data={products}
                 editProduct={this.editProduct}
                 deleteProduct={this.deleteProduct}
@@ -126,6 +166,7 @@ class Appointments extends Component {
             </TabPane>
             <TabPane tab='Approved Appointments' key='2'>
               <AppointmentsTable
+                assignDoctor={this.toggleModal}
                 data={products}
                 editProduct={this.editProduct}
                 deleteProduct={this.deleteProduct}
@@ -134,6 +175,7 @@ class Appointments extends Component {
             </TabPane>
             <TabPane tab='Completed Appointments' key='3'>
               <AppointmentsTable
+                assignDoctor={this.toggleModal}
                 data={products}
                 editProduct={this.editProduct}
                 deleteProduct={this.deleteProduct}
@@ -148,7 +190,7 @@ class Appointments extends Component {
 }
 export const mapDispatchToProps = (dispatch) => ({
          getALLAppointments: () => dispatch(getALLAppointments()),
-         deleteProduct: (id) => dispatch(deleteProduct(id)),
+         getUsers: () => dispatch(getALLUsers()),
        });
 
 export const mapStateToProps = (state) => ({

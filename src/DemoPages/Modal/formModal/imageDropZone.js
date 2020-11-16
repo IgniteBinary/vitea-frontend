@@ -47,7 +47,7 @@ class FormDropZone extends React.Component {
                         ></i>
                       )}
                       <ListGroup>{files}</ListGroup>
-                      <Button className='mb-2 mr-2 mt-2' color='primary'>
+                      <Button className='mb-2 mr-2 mt-2' color='primary' type="button">
                         {files && files.length > 0 ? 'Change Image' : 'Browse File'}
                       </Button>
                     </div>

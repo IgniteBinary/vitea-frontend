@@ -61,7 +61,7 @@ const updateCreateProductFailedState = (state, action) =>
     return {
       ...state,
       products: state.products.map((content, i) =>
-        content._id === action.payload._id
+        content.id === action.payload.id
           ? { ...content, ...action.payload }
           : content
       ),
@@ -152,14 +152,14 @@ const productsReducer = (state = initialState , action) => {
         return updateCreateProductSuccessState(state, action);
       case types.CREATE_PRODUCT_FAILED:
         return updateCreateProductFailedState(state, action);
-      case types.EDIT_PRODUCT_SUCCESS:
+      case types.EDIT_APPOINTMENT_SUCCESS:
         return updateEditProductSuccessState(state, action);
-      case types.EDIT_PRODUCT_FAILED:
+      case types.EDIT_APPOINTMENT_FAILED:
         return updateEditProductFailedState(state, action);
       case types.EDIT_PRODUCT_PHOTOS_SUCCESS:
-         return updateEditProductPhotoSuccessState(state, action);
+        return updateEditProductPhotoSuccessState(state, action);
       case types.EDIT_PRODUCT_PHOTOS_FAILED:
-        return updateEditProductPhotoFailedState(state, action)
+        return updateEditProductPhotoFailedState(state, action);
       case types.DELETE_PRODUCT_SUCCESS:
         return updateDeleteProductSuccessState(state, action);
       case types.DELETE_PRODUCT_FAILED:

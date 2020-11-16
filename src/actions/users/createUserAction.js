@@ -19,7 +19,7 @@ const createUserFailed = payload => ({
 });
 
 const startCreateUser = () => ({
-    type: types.API_REQUEST,
+    type: 'START_CREATE_USER',
 })
 
 const createUser = user => (dispatch) => {
@@ -28,7 +28,7 @@ const createUser = user => (dispatch) => {
     const formtDob = moment(user.dob).format("YYYY-MM-DD")
     user.dob = formtDob
     const facility_token = localStorage.getItem('facility_token')
-    return axios.post(`http://vitea.azurewebsites.net/facilities/doctors/${facility_id}`, user, {
+    return axios.put(`http://vitea.azurewebsites.net/appointment/${facility_id}`, user, {
         headers: {
             'Authorization': `Bearer ${facility_token}`,
             'Access-Control-Allow-Origin': true,

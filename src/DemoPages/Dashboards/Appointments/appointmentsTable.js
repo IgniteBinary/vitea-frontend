@@ -106,7 +106,7 @@ class ProductsTable extends Component {
                     {
                       Header: 'Status',
                       accessor: 'status',
-                      Cell: () => `Pending`
+                      Cell: () => `Pending`,
                     },
                   ],
                 },
@@ -114,7 +114,7 @@ class ProductsTable extends Component {
                   columns: [
                     {
                       Header: 'Actions',
-                      accessor: '_id',
+                      accessor: 'id',
                       Cell: (row) => (
                         <div className='d-block w-100 text-center'>
                           <UncontrolledButtonDropdown>
@@ -126,10 +126,12 @@ class ProductsTable extends Component {
                               <i className='lnr-menu-circle btn-icon-wrapper' />
                             </DropdownToggle>
                             <DropdownMenu className='rm-pointers dropdown-menu-hover-link'>
-                              <DropdownItem header>Manage Appointment</DropdownItem>
+                              <DropdownItem header>
+                                Manage Appointment
+                              </DropdownItem>
                               <DropdownItem>
                                 <i className='dropdown-icon pe-7s-look'> </i>
-                                <span onClick={viewProduct(row.value)}>
+                                <span onClick={() => this.props.assignDoctor(row.value)}>
                                   Assign Doctor
                                 </span>
                               </DropdownItem>

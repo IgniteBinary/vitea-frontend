@@ -23,6 +23,7 @@ import Loader from 'react-loaders';
 import DatePicker from 'react-datepicker';
 import PhoneInput from 'react-phone-input-2';
 import ImageUpload from './imageDropZone';
+import { resetCalls } from 'react-ga';
 class ModalBackdrop extends React.Component {
     constructor(props) {
         super(props);
@@ -136,10 +137,16 @@ class ModalBackdrop extends React.Component {
               image_url: this.props.Image.img_url, 
 
       }
-      await this.uploadImageHandler()
-      if(this.props.Image.img_url){
-         await createUser(doctorObj)
+      this.uploadImageHandler().then(
+        (res) => {
+          console.log(res)
+          //  doctorObj.image_url = res.data.secure_url
+           if(this.props.Image.img_url){
+              doctorObj.image_url = this.props.Image.img_url
+           createUser(doctorObj)
       }
+        }
+      )
       if (this.props.Users.success) {
          toast.success('User successfully created', {
            position: toast.POSITION.TOP_RIGHT,

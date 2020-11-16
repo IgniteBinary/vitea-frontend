@@ -1,9 +1,8 @@
 /* eslint-disable camelcase */
 import axios from 'axios';
 import { toast } from 'react-toastify';
-
 import * as types from '../action_types';
-import apiRequest from '../common_actions';
+
 
 
 const getAllUsersSuccess = payload => ({
@@ -18,7 +17,6 @@ const getAllUsersFailed = payload => ({
 
 
 const getALLUsers = () => (dispatch) => {
-    dispatch(apiRequest());
     const { facility_id } = JSON.parse(localStorage.getItem('user'));
     const facility_token = localStorage.getItem('facility_token')
     return axios.get(`http://vitea.azurewebsites.net/facilities/doctors/${facility_id}`, {
