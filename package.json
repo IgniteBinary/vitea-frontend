@@ -15,7 +15,7 @@
     "animate-sass": "^0.8.2",
     "apexcharts": "^3.8.6",
     "aphrodite": "^2.4.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "body-scroll-lock": "^3.0.3",
     "bootstrap": "^4.3.1",
     "chart.js": "^2.8.0",
